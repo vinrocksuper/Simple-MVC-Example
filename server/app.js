@@ -10,6 +10,13 @@ const router = require('./router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/simpleMVCExample';
+mongoose.connect(dbURI, (err) => {
+  if(err){
+    console.log('Could not connect to database');
+    throw err; // we want to throw an error and crash the server since the DB isn't working
+  }
+})
 
 const app = express();
 
